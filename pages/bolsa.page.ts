@@ -9,12 +9,8 @@ export class BolsaPage {
     }
 
     async clickConfirmButton() {
-
-        await this.confirmButton.waitFor({ state: 'visible', timeout: 10000 })
         
         await this.confirmButton.click()
 
-        await this.page.waitForSelector('//div[@data-molecule-modal-content=\'true\']', 
-            { state: 'hidden', timeout: 5000 })
     }
 }
