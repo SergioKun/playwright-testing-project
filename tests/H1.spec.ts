@@ -8,7 +8,7 @@ import { CookiePage } from '../pages/cookie.page';
 import { BolsaPage } from '../pages/bolsa.page';
 
 
-test.describe('H1 Agregar productos al carrito y validar OrderForm en Summary del checkout', () => {
+test.describe.parallel('H1 Agregar productos al carrito y validar OrderForm en Summary del checkout', () => {
     test('CP1 ', async ({ page }) => {
 
         const pdpPage = new PDPPage(page)
