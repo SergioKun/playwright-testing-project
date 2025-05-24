@@ -51,7 +51,7 @@ export class PDPPage {
                 await this.addToCart()
             } 
             
-            await this.page.waitForTimeout(3000)
+            await this.page.waitForTimeout(5000)
         }
     }
 

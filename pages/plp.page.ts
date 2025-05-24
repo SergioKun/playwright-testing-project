@@ -22,17 +22,17 @@ export class PLPPage {
     }
 
     async addProductToCartFromPLP(numbreOfProduct: number){
-    for(let i = 1; i <= numbreOfProduct; i++) {
-        const addButton = this.getAddButtonFromPLP(i);
-        await addButton.click()
 
-        await this.page.waitForResponse(response => 
-            response.url().includes('add-to-cart') && response.status() === 200
-        )
+        for(let i = 1; i <= numbreOfProduct; i++) {
+            const addButton = await this.getAddButtonFromPLP(i);
+            await addButton.click()
+            await this.page.waitForTimeout(5000)
+        }
+
+        
     }
-}
 
-    private getAddButtonFromPLP(numberOfProduct: number): Locator {
+    async getAddButtonFromPLP(numberOfProduct: number) {
         return this.page.locator(`//ul[@data-fs-product-grid="true"]/li[${numberOfProduct}]//button[span[text()="Agregar"]]`)
     }
 

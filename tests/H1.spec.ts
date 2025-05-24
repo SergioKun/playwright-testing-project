@@ -14,16 +14,13 @@ test.describe.parallel('H1 Agregar productos al carrito y validar OrderForm en S
         const pdpPage = new PDPPage(page)
         const summaryPage = new SummaryPage(page)
 
-        // ir a la página
-        await pdpPage.goToPDP('https://www.exito.com/televisor-samsung-60-pulgadas-led-uhd-4k-smart-tv-un60du7000kxzl-3179356/p')
+        await pdpPage.goToPDP('https://www.exito.com/televisor-samsung-70-pulgadas-led-uhd-4k-smart-tv-qn70q65dakxzl-3162452/p')
         await pdpPage.addToCart()
         await pdpPage.selectSinGarantia()
-
-        await summaryPage.expectPositiveItemSummary('Televisor SAMSUNG 60 pulgadas LED Uhd4K Smart TV UN60DU7000KXZL', '1')
+        
+        await summaryPage.expectPositiveItemSummary('Televisor SAMSUNG 70 pulgadas QLED Uhd4K Smart TV QN70Q65DAKXZL', '1')
 
         await page.waitForTimeout(5000)
-
-        // Código para solucionar la revisión del sessionStorage
     })
 
     test('CP2 ', async ({ page }) => {
@@ -73,9 +70,9 @@ test.describe.parallel('H1 Agregar productos al carrito y validar OrderForm en S
         await plpPage.addProductToCartFromPLP(3);
         await minicartPage.goToMiniCartPage();
         await minicartPage.goToCartPage();
-        await page.waitForTimeout(5000);
-
+        await page.waitForTimeout(7000);
         const expectedTotal = await summaryPage.calculateTotalItemsPrice();
+        
         await summaryPage.expectPositiveTotalValue(expectedTotal)
     })
 
@@ -85,7 +82,7 @@ test.describe.parallel('H1 Agregar productos al carrito y validar OrderForm en S
         const cookiePage = new CookiePage(page);
         const sessionStoragePage = new SessionStoragePage(page);
 
-        await pdpPage.goToPDP('https://www.exito.com/televisor-samsung-60-pulgadas-led-uhd-4k-smart-tv-un60du7000kxzl-3179356/p');
+        await pdpPage.goToPDP('https://www.exito.com/televisor-samsung-70-pulgadas-led-uhd-4k-smart-tv-qn70q65dakxzl-3162452/p');
         await pdpPage.addToCart();
         await page.waitForTimeout(2000);
         await pdpPage.selectSeguirComprando();
@@ -94,7 +91,7 @@ test.describe.parallel('H1 Agregar productos al carrito y validar OrderForm en S
         await minicartPage.goToMiniCartPage();
         await minicartPage.goToCartPage();
 
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(7000);
 
         await sessionStoragePage.expectOrderFormItemsToBePresent();
 
@@ -108,7 +105,7 @@ test.describe.parallel('H1 Agregar productos al carrito y validar OrderForm en S
         const bolsaPage = new BolsaPage(page)
 
         var products: any[] = [
-            {url:'https://www.exito.com/televisor-samsung-60-pulgadas-led-uhd-4k-smart-tv-un60du7000kxzl-3179356/p', noAlimentos:true},
+            {url:'https://www.exito.com/televisor-samsung-70-pulgadas-led-uhd-4k-smart-tv-qn70q65dakxzl-3162452/p', noAlimentos:true},
             {url:'https://www.exito.com/salchicha-ranchera-x-480-g-749935/p',noAlimentos:false}
             
         ]
@@ -117,11 +114,11 @@ test.describe.parallel('H1 Agregar productos al carrito y validar OrderForm en S
         await cookiePage.clickOnCookieButton()
         await minicartPage.goToMiniCartPage();
         await minicartPage.goToCartPage();
- 
+        //await page.waitForTimeout(10000);
         await bolsaPage.clickConfirmButton()
 
         const expectedProductQuantities = {
-            'Televisor SAMSUNG 60 pulgadas LED Uhd4K Smart TV UN60DU7000KXZL': 1,
+            'Televisor SAMSUNG 70 pulgadas QLED Uhd4K Smart TV QN70Q65DAKXZL': 1,
             'Salchicha Ranchera RANCHERA  (480  gr)': 1
         };
 
