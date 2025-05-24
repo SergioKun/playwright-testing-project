@@ -46,6 +46,9 @@ export class SessionStoragePage {
     }
 
     async expectOrderFormItemsToBePresent() {
+
+        await this.page.waitForTimeout(4000);
+
         const orderForm = await this.getOrderFormFromSessionStorage();
 
         expect(orderForm).not.toBeNull();

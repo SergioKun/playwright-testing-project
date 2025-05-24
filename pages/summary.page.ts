@@ -1,4 +1,5 @@
 import { ElementHandle, expect, Locator, Page } from '@playwright/test';
+import { allowedNodeEnvironmentFlags } from 'process';
 
 export class SummaryPage {
 
@@ -18,6 +19,9 @@ export class SummaryPage {
     }
 
     async expectPositiveItemSummary(selected_product_name: string, selected_item_quantity_value: string) {
+
+        await this.page.waitForTimeout(2000)
+
         await expect(this.itemSummaryTitle).toHaveText(selected_product_name)
 
         await expect(this.quantitySummaryValue).toHaveText(selected_item_quantity_value)
